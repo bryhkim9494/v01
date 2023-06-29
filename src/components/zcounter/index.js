@@ -5,26 +5,26 @@ import ZCountPanel from "./ZCountPanel";
 const ZCounter = () => {
 
     const target = {
-        p1:'A',
-        p2:'B',
-        p3:'C',
-        p4:'D'
+        p1: 'A',
+        p2: 'B',
+        p3: 'C',
+        p4: 'D'
     }
 
-    const [obj, setObj] = useState({num:10})
+    const [obj, setObj] = useState({ num: 10 })
 
     const changeObj = (amount) => {
         obj.num += amount
-        setObj({...obj})
+        setObj({ ...obj })
     }
 
 
-    return ( 
+    return (
         <div>
-            <ZCountDisplay value={obj.num}/>
-            <ZCountPanel fn={changeObj}/>
+            <ZCountDisplay value={obj.num} />
+            <ZCountPanel fn={changeObj} />
         </div>
-     );
+    );
 }
- 
+
 export default ZCounter;

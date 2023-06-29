@@ -7,25 +7,25 @@ import TodoList from "./TodoList";
 
 const Todo = () => {
 
-    const [todoArr, setTodoArr] =useState([])
+    const [todoArr, setTodoArr] = useState([])
     const addTodo = (newTodo) => {
-        console.log("add Todo",newTodo)
+        console.log("add Todo", newTodo)
 
-        setTodoArr([...todoArr,newTodo])
+        setTodoArr([...todoArr, newTodo])
     }
 
     const removeTodo = (tno) => {
-        console.log("removeTodo" , tno)
+        console.log("removeTodo", tno)
 
         setTodoArr(todoArr.filter(todo => todo.tno !== tno))
     }
-    
-    return ( 
+
+    return (
         <TemplatePage>
-        <TodoInput addTodo={addTodo}></TodoInput>
-        <TodoList arr={todoArr} removeFn={removeTodo}></TodoList>
+            <TodoInput addTodo={addTodo}></TodoInput>
+            <TodoList arr={todoArr} removeFn={removeTodo}></TodoList>
         </TemplatePage>
-     );
+    );
 }
- 
+
 export default Todo;

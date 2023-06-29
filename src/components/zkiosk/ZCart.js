@@ -1,27 +1,27 @@
 import ZCartItem from "./ZCartItem";
 
-const ZCart = ({arr , changeQty}) => {
+const ZCart = ({ arr, changeQty }) => {
 
-    console.log("arr",arr)
+    console.log("arr", arr)
 
-    if(arr === null || arr.length === 0){
+    if (arr === null || arr.length === 0) {
         return (
             <></>
         )
     }
 
-    return ( 
+    return (
         <div>
             <ul>
-                {arr.map( (cartItem, idx) => 
-                <li key={idx}>
-                    <ZCartItem {...cartItem} changeQty={changeQty}></ZCartItem>
-                </li>)}
+                {arr.map((cartItem, idx) =>
+                    <li key={idx}>
+                        <ZCartItem {...cartItem} changeQty={changeQty}></ZCartItem>
+                    </li>)}
             </ul>
-        </div> 
+        </div>
     );
 }
 
 
- 
+
 export default ZCart;

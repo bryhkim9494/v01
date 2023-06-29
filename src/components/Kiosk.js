@@ -1,22 +1,22 @@
 import { useState } from "react"
 
 const products = [
-    {pno:1, pname:'Americano', price: 7000 , img:"p1.jpg"},
-    {pno:2, pname:'Latte', price: 8000 , img:"p2.jpg"},
-    {pno:3, pname:'Milk Tea', price: 9000 , img:"p3.jpg"},
-    {pno:4, pname:'Green Tea', price: 6000 , img:"p4.jpg"},
+    { pno: 1, pname: 'Americano', price: 7000, img: "p1.jpg" },
+    { pno: 2, pname: 'Latte', price: 8000, img: "p2.jpg" },
+    { pno: 3, pname: 'Milk Tea', price: 9000, img: "p3.jpg" },
+    { pno: 4, pname: 'Green Tea', price: 6000, img: "p4.jpg" },
 
 ]
 
 const getTotal = (arr) => {
 
-    if(!arr || arr.length === 0){
+    if (!arr || arr.length === 0) {
         return 0
     }
 
     let sum = 0;
     // reduce으로 다시해보기
-    for(const ele of arr ){
+    for (const ele of arr) {
         sum += (ele.price * ele.qty)
     }
     // --------위의 포문을 reduce로 변경--------
@@ -77,14 +77,14 @@ const Kiosk = () => {
     // }
 
     const handleClickBuy = (product) => {
-        console.log({...product, qty:1})
+        console.log({ ...product, qty: 1 })
 
-        const result = items.filter( ele => ele.pno === product.pno )
+        const result = items.filter(ele => ele.pno === product.pno)
 
         console.log("result", result)
 
-        if(result.length === 0) {
-            setItems([...items, {...product, qty:1}])
+        if (result.length === 0) {
+            setItems([...items, { ...product, qty: 1 }])
             return
         }
 
@@ -95,20 +95,20 @@ const Kiosk = () => {
     }
 
 
-    const handleClickQty = (pno , amount) => {
+    const handleClickQty = (pno, amount) => {
 
-        console.log("pno" , pno , "amount" , amount)
-        const target = items.filter( item => item.pno === pno )[0]
+        console.log("pno", pno, "amount", amount)
+        const target = items.filter(item => item.pno === pno)[0]
 
         console.log(target)
 
 
-        if(amount === 1){
+        if (amount === 1) {
             target.qty += 1
             setItems([...items])
-        }else {
-            if(target.qty === 1){
-                setItems( items.filter(ele => ele.pno !== pno) )
+        } else {
+            if (target.qty === 1) {
+                setItems(items.filter(ele => ele.pno !== pno))
                 return
             }
             target.qty -= 1
@@ -122,90 +122,90 @@ const Kiosk = () => {
         setCurrent(product)
     }
 
-    return ( 
+    return (
 
-        <div className="w-full bg-white flex"> 
+        <div className="w-full bg-white flex">
             <div className="w-2/3 bg-sb-green ">
                 <div className="text-4xl font-extrabold font-[Sans-Bold] p-2">Menu</div>
-                
+
                 <ul className="font-[Sans-Bold]">
-                    {products.map( p => 
-                    <li
-                        key={p.pno} 
-                        className="text-2xl  m-3 p-3 bg-sb-green border-2 border-black"
-                        onClick={() => {handleClickView(p)}}
-                    >
-                        <div className="">
-                        <img className="w-20" src={p.img}/>&nbsp;&nbsp;{p.pno}. &nbsp;{p.pname}&nbsp;:&nbsp;{p.price}
-                    <button 
-                    className="border-1  m-2 p-2 rounded-lg bg-gray-300 h-10"
-                    onClick={() => {handleClickBuy(p)}}
-                    >GET</button>
-                        </div>
-                    </li>)}
+                    {products.map(p =>
+                        <li
+                            key={p.pno}
+                            className="text-2xl  m-3 p-3 bg-sb-green border-2 border-black"
+                            onClick={() => { handleClickView(p) }}
+                        >
+                            <div className="">
+                                <img className="w-20" src={p.img} />&nbsp;&nbsp;{p.pno}. &nbsp;{p.pname}&nbsp;:&nbsp;{p.price}
+                                <button
+                                    className="border-1  m-2 p-2 rounded-lg bg-gray-300 h-10"
+                                    onClick={() => { handleClickBuy(p) }}
+                                >GET</button>
+                            </div>
+                        </li>)}
                 </ul>
 
                 <div>
                     <div>View</div>
-                    {current ? 
-                    <div>
-                        current
-                    <div>{current.pno}</div>
-                    </div>
-                    :
-                    <></>
+                    {current ?
+                        <div>
+                            current
+                            <div>{current.pno}</div>
+                        </div>
+                        :
+                        <></>
                     }
                 </div>
-    
+
             </div>
             <div className="w-1/3 bg-sb-gray1 ml-3">
-                
-            <div className="text-4xl font-extrabold font-[Sans-Bold]" >Cart</div>
 
-            <div className="bg-sb-gary2 text-5xl font-[Sans-Bold]">
-                Total {getTotal(items)}
-            </div>
+                <div className="text-4xl font-extrabold font-[Sans-Bold]" >Cart</div>
+
+                <div className="bg-sb-gary2 text-5xl font-[Sans-Bold]">
+                    Total {getTotal(items)}
+                </div>
 
 
-            <ul>
-                {items.map( (item, idx) => 
-                <li 
-                    key={idx} className="border-2"
-                >
-                    <div className="text-3xl m-4 p-4">
-                        <div><img className="w-28 m-auto mb-7" src={item.img} /></div>
-                        <div className="flex justify-center font-bold">
-                            <div>{item.pno}. </div>
-                            <div>&nbsp;{item.pname}</div>
-                            <div>&nbsp;: {item.price}</div>
-                        </div>
-
-                    </div>
-                    <div className="flex justify-center text-2xl">
-                        <button 
-                            className="rounded-lg bg-gray-300 p-4 m-1 h-13"
-                            onClick={() => handleClickQty(item.pno, 1)}
-                        
+                <ul>
+                    {items.map((item, idx) =>
+                        <li
+                            key={idx} className="border-2"
                         >
-                            +
-                        </button>
-                        <p className="m-2 text-red-700 p-2">{item.qty}</p>
-                        <button 
-                            className="rounded-lg bg-gray-300 p-4 m-1 h-13"
-                            onClick={() => handleClickQty(item.pno, -1)}
-                        >
-                            -
-                        </button>
-                    </div>
-                </li> )}
-            </ul>
+                            <div className="text-3xl m-4 p-4">
+                                <div><img className="w-28 m-auto mb-7" src={item.img} /></div>
+                                <div className="flex justify-center font-bold">
+                                    <div>{item.pno}. </div>
+                                    <div>&nbsp;{item.pname}</div>
+                                    <div>&nbsp;: {item.price}</div>
+                                </div>
 
-            
+                            </div>
+                            <div className="flex justify-center text-2xl">
+                                <button
+                                    className="rounded-lg bg-gray-300 p-4 m-1 h-13"
+                                    onClick={() => handleClickQty(item.pno, 1)}
+
+                                >
+                                    +
+                                </button>
+                                <p className="m-2 text-red-700 p-2">{item.qty}</p>
+                                <button
+                                    className="rounded-lg bg-gray-300 p-4 m-1 h-13"
+                                    onClick={() => handleClickQty(item.pno, -1)}
+                                >
+                                    -
+                                </button>
+                            </div>
+                        </li>)}
+                </ul>
+
+
             </div>
         </div>
-       
 
-     );
+
+    );
 }
- 
+
 export default Kiosk;
