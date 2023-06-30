@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
 
 
-const Cart = ({id,pname,price}) => {
+const Cart = ({ id, pname, price }) => {
 
     const [items, setItems] = useState([])
 
-    console.log("Cart" , id,pname,price)
+    console.log("Cart", id, pname, price)
 
-    useEffect(() =>{
+    useEffect(() => {
         console.log("Cart useEffect......................")
-        
-        if(!id || id===0) {
+
+        if (!id || id === 0) {
             return
         }
 
-        setItems([...items,{id,pname,price, qty:1}])
-        
-    },[id,pname,price])
+        setItems([...items, { id, pname, price, qty: 1 }])
+
+    }, [id, pname, price])
 
 
-    return (  
+    return (
         <div>
             <div className="text-5xl">Cart</div>
             <div>
                 <ul>
-                    {items.map((cartItem,idx) => //??
+                    {items.map((cartItem, idx) => //??
                         <li key={idx}>{cartItem.id} - {cartItem.pname} - {cartItem.price} - {cartItem.qty} </li>
                     )}
                 </ul>
@@ -32,5 +32,5 @@ const Cart = ({id,pname,price}) => {
         </div>
     );
 }
- 
+
 export default Cart;

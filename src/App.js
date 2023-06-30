@@ -2,11 +2,12 @@ import Kiosk from "./components/kiosk";
 
 
 
-function App({id}) {
+function App({ id }) {
 
 
   return (
     <div>
+      {/* <Todo></Todo> */}
       <Kiosk></Kiosk>
     </div>
   );
